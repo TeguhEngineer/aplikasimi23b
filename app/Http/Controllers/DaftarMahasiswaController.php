@@ -42,7 +42,7 @@ class DaftarMahasiswaController extends Controller
         // dd(request()->all());
         $validateData = $request->validate([
             'nama'       => 'required|max:100',
-            'nim'        => 'required|unique:users',
+            'nim'        => 'required|min:9|max:9|unique:users',
             'email'      => 'required|min:3|max:50|unique:users',
             'password'   => 'required|min:5|max:20',
             'jabatan'    => 'required',
@@ -88,7 +88,7 @@ class DaftarMahasiswaController extends Controller
     {
         $validateData = $request->validate([
             'nama'       => 'required|max:100',
-            'nim'        => 'required|unique:users,nim,'. $id,
+            'nim'        => 'required|min:9|max:10|unique:users,nim,'. $id,
             'email'      => 'required|min:3|max:50|unique:users,email,'. $id,
             // 'password'   => 'required|min:5|max:20',
             'jabatan'    => 'required',
@@ -106,6 +106,7 @@ class DaftarMahasiswaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        User::where('id',$id)->delete();
+        return back()->with('informasi','Data Petugas berhasil dihapus'); 
     }
 }

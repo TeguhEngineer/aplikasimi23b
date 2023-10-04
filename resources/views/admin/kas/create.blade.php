@@ -3,64 +3,59 @@
 <div class="modal-body">
     <div class="form-group">
         <label>Nama</label>
-        <select class="form-control select2" data-placeholder="Select a State" style="width: 100%;">
-            <option>Teguh Afriansyah</option>
-            <option>Adi Apriyanto</option>
-            <option>Khikmal Kurniawan</option>
-            
+        <select class="form-control select2" name="nama" data-placeholder="Select a State" style="width: 100%;">
+            <option>-- Pilih Nama Mahsiswa --</option>
+            @foreach ($namamahasiswa as $item)
+                <option value="{{ $item->id }}">{{ $item->nama }}
+                </option>
+            @endforeach
+
         </select>
     </div>
-    <div class="form-group">
-        <label>Nama</label>
-        <select class="form-control select2" data-placeholder="Select a State" style="width: 100%;">
-            <option>Oktober 2023</option>
-            <option>November 2023</option>
-            <option>Desember 2023</option>
-            <option>Januari 2024</option>
-            <option>Februari 2024</option>
-            <option>Maret 2024</option>
-            <option>April 2024</option>
-            <option>Mei 2024</option>
-            <option>Juni 2024</option>
-            <option>Juli 2024</option>
-            <option>Agustus 2024</option>
-            <option>September 2024</option>
-            <option>Oktober 2024</option>
-            <option>November 2024</option>
-            <option>Desember 2024</option>
-            
-        </select>
-    </div>
-    <div class="form-group">
-        <label for="nim">NIM</label>
-        <input type="number" name="nim" class="form-control" id="nim" placeholder="Nomor Induk Mahasiswa"
-            required>
-    </div>
-    <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" name="email" class="form-control" id="email" placeholder="Alamat Email" required>
-    </div>
-    <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" name="password" class="form-control" id="password" placeholder="Password" required>
-    </div>
-    <div class="form-group">
-        <label for="jabatan">Jabatan</label>
-        <select class="custom-select rounded-0" name="jabatan" id="jabatan" required>
-            <option disabled selected>--Pilih Jabatan--</option>
-            <option value="wali_kelas">Wali kelas</option>
-            <option value="ketua_kelas">Ketua Kelas</option>
-            <option value="wakil_ketua">Wakil Ketua</option>
-            <option value="sekertaris">Sekertaris</option>
-            <option value="bendahara">Bendahara</option>
-            <option value="s.keamanan">Seksi Keamanan</option>
-            <option value="s.kerohanian">Seksi Kerohanian</option>
-            <option value="s.kebersihan">Seksi Kebersihan</option>
-        </select>
-    </div>
-    
+    <div class="row">
 
 
+        <div class="col-12 my-2">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">
+                        <input type="checkbox" name="minggu1">
+                    </span>
+                </div>
+                <input type="text" class="form-control" placeholder="MINGGU 1" disabled>
+            </div>
+        </div>
+        <div class="col-12 my-2">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">
+                        <input type="checkbox" name="minggu2">
+                    </span>
+                </div>
+                <input type="text" class="form-control" placeholder="MINGGU 2" disabled>
+            </div>
+        </div>
+        <div class="col-12 my-2">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">
+                        <input type="checkbox" name="minggu3">
+                    </span>
+                </div>
+                <input type="text" class="form-control" placeholder="MINGGU 3" disabled>
+            </div>
+        </div>
+        <div class="col-12 my-2">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">
+                        <input type="checkbox" name="minggu4">
+                    </span>
+                </div>
+                <input type="text" class="form-control" placeholder="MINGGU 4" disabled>
+            </div>
+        </div>
+    </div>
 </div>
 <div class="modal-footer justify-content-between">
     <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>

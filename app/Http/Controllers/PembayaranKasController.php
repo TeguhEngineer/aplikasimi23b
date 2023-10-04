@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PembayaranKasController extends Controller
@@ -13,7 +14,11 @@ class PembayaranKasController extends Controller
      */
     public function index()
     {
-        return view('admin.kas.index');
+        $users = User::where('role', 'user');
+
+        return view('admin.kas.index',[
+            'namamahasiswa'     =>$users->get()
+        ]);
     }
 
     /**

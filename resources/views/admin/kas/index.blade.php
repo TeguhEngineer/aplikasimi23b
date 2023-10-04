@@ -33,15 +33,12 @@
                                                 Tambah Data Pembayaran</button>
                                     </div>
                                     <div class="col-4 text-center">
-                                        <p class="d-inline h5"><i class="bi bi-calendar3"></i> <b><u>Oktober 2023</u></b></p>
-                                        <a href="#">
-                                            <small><i class="bi bi-pencil-square"></i></small>
-                                        </a>
+                                        <p class="d-inline h5"><i class="bi bi-calendar3"></i> <b><u><?php echo date('j/m/Y'); ?></u></b></p>
                                     </div>
                                     <div class="col-4 text-right">
-                                        <a href="">
-                                            <button class="btn btn-outline-success btn-xs"><i class="bi bi-journal-plus"></i> Buat Laporan</button>
-                                        </a>
+                                        {{-- <a href="#" id="swalDefaultSuccess"> --}}
+                                            <button type="button" class="btn btn-outline-success btn-xs swalDefaultSuccess"><i class="bi bi-journal-plus"></i> Buat Laporan</button>
+                                        {{-- </a> --}}
                                     </div>
                                 </div>
                             </div>

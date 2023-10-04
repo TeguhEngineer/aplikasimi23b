@@ -19,6 +19,10 @@ class User extends Authenticatable
      */
     protected $guarded = ['id'];
 
+    public function kas() {
+        return $this->hasMany(Kas::class,'users_id','id');
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *
