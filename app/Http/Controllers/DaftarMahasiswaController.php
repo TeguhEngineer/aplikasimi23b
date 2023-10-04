@@ -50,7 +50,7 @@ class DaftarMahasiswaController extends Controller
         ]);
         $validateData['password'] = bcrypt($validateData['password']);
         User::create($validateData);
-        return redirect('/daftarmahasiswa')->with('informasi','Data berhasil ditambahkan!');
+        return redirect('/daftarmahasiswa')->with('informasi','');
     }
 
     /**
@@ -95,7 +95,7 @@ class DaftarMahasiswaController extends Controller
             'motivasi'   => 'required|max:50',
         ]);
         User::find($id)->update($validateData);
-        return back()->with('informasi','Data berhasil ditambahkan!');
+        return back()->with('informasi','');
     }
 
     /**
@@ -107,6 +107,6 @@ class DaftarMahasiswaController extends Controller
     public function destroy($id)
     {
         User::where('id',$id)->delete();
-        return back()->with('informasi','Data Petugas berhasil dihapus'); 
+        return back()->with('delete',''); 
     }
 }
