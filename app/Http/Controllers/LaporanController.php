@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Laporan;
+use App\Models\Pengeluaran;
 use Illuminate\Http\Request;
 
 class LaporanController extends Controller
@@ -13,7 +15,12 @@ class LaporanController extends Controller
      */
     public function index()
     {
-        return view('admin.laporan.index');
+        $showLaporan = Laporan::all();
+        $showPengeluaran = Pengeluaran::all();
+        return view('admin.laporan.index', [
+            'laporan'       => $showLaporan,
+            'pengeluaran'   => $showPengeluaran,
+        ]);
     }
 
     /**
@@ -34,7 +41,27 @@ class LaporanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd(request()->all());
+        $validateData = $request->validate([
+            'bulan'      => 'required',
+            'tahun'       => 'required',
+            'total'        => 'required',
+            'catatan'        => 'nullable',
+        ]);
+        Laporan::create($validateData);
+        return redirect('/laporan')->with('informasi','');
+    }
+
+    public function pengeluaran(Request $request){
+        $validateData = $request->validate([
+            'tanggal'      => 'required',
+            'catatan'      => 'required',
+            'saldo'        => 'required',
+            'harga'        => 'required',
+            'sisa_saldo'   => 'required',
+        ]);
+        Pengeluaran::create($validateData);
+        return redirect('/laporan')->with('informasi','');
     }
 
     /**

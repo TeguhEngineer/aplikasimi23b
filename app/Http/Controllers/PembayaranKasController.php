@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kas;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -14,10 +15,12 @@ class PembayaranKasController extends Controller
      */
     public function index()
     {
-        $users = User::where('role', 'user');
-
+        $kas = Kas::join('users','kas.users_id', '=', 'users.id')->select('kas.*')->orderBy('users.nama', 'ASC');
+        $users = User::orderBy('nama','ASC')->orwhere('role','user');
         return view('admin.kas.index',[
-            'namamahasiswa'     =>$users->get()
+            'kas'     =>$kas->get(),
+            'namamahasiswa' =>$users->get()
+            
         ]);
     }
 
@@ -28,7 +31,7 @@ class PembayaranKasController extends Controller
      */
     public function create()
     {
-        //
+        ///
     }
 
     /**
@@ -39,7 +42,16 @@ class PembayaranKasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd(request()->all());
+        $validateData = $request->validate([
+            'users_id'      => 'required',
+            'minggu1'       => 'required',
+            'minggu2'        => 'required',
+            'minggu3'        => 'required',
+            'minggu4'        => 'required',
+        ]);
+        Kas::create($validateData);
+        return redirect('/pembayarankas')->with('informasi','');
     }
 
     /**
@@ -73,7 +85,15 @@ class PembayaranKasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validateData = $request->validate([
+            'users_id'      => 'required'. $id,
+            'minggu1'       => 'required',
+            'minggu2'        => 'required',
+            'minggu3'        => 'required',
+            'minggu4'        => 'required',
+        ]);
+        Kas::find($id)->update($validateData);
+        return redirect('/pembayarankas')->with('informasi','');
     }
 
     /**
@@ -84,6 +104,7 @@ class PembayaranKasController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Kas::where('id',$id)->delete();
+        return back()->with('delete',''); 
     }
 }

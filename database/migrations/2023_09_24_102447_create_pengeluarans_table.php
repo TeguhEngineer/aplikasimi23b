@@ -17,7 +17,9 @@ class CreatePengeluaransTable extends Migration
             $table->id();
             $table->date('tanggal');
             $table->text('catatan');
+            $table->integer('saldo');
             $table->integer('harga');
+            $table->integer('sisa_saldo');
             $table->timestamps();
         });
     }

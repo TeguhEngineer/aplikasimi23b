@@ -14,7 +14,8 @@ class DaftarMahasiswaController extends Controller
      */
     public function index()
     {
-        $mahasiswa = User::where('role','user');
+        // $mahasiswa = User::where('role','user');
+        $mahasiswa = User::orderBy('nama','ASC')->orwhere('role','user');
 
         return view('admin.daftarmahasiswa.index', [
             'datamahasiswa'         =>$mahasiswa->get()
@@ -46,7 +47,7 @@ class DaftarMahasiswaController extends Controller
             'email'      => 'required|min:3|max:50|unique:users',
             'password'   => 'required|min:5|max:20',
             'jabatan'    => 'required',
-            'motivasi'   => 'required|max:50',
+            'motivasi'   => 'nullable|max:50',
         ]);
         $validateData['password'] = bcrypt($validateData['password']);
         User::create($validateData);

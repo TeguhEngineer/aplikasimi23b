@@ -28,7 +28,7 @@
                             <div class="card-header">
                                 <div class="row">
                                     <div class="col-6">
-                                        <b>Laporan Pemasukan</b>
+                                        <b>Laporan Pemasukan Kas</b>
                                     </div>
                                     <div class="col-6 text-right">
                                         <button class="btn btn-outline-danger btn-xs px-3"><i class="bi bi-printer"></i>
@@ -50,29 +50,17 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>1.</td>
-                                            <td>SEPTEMBER</td>
-                                            <td>2023</td>
-                                            <td><span class="badge bg-gradient-success">Rp44.000</span></td>
-                                            <td>Belum bayar (siapa)</td>
-                                        </tr>
-                                        <tr>
-                                            <td>1.</td>
-                                            <td>SEPTEMBER</td>
-                                            <td>2023</td>
-                                            <td><span class="badge bg-gradient-success">Rp44.000</span></td>
-                                            <td>Belum bayar (siapa)</td>
-                                        </tr>
-                                        <tr>
-                                            <td>1.</td>
-                                            <td>SEPTEMBER</td>
-                                            <td>2023</td>
-                                            <td><span class="badge bg-gradient-success">Rp44.000</span></td>
-                                            <td>Belum bayar (siapa)</td>
-                                        </tr>
-
-
+                                        @foreach ($laporan as $item)
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $item->bulan }}</td>
+                                                <td>{{ $item->tahun }}</td>
+                                                <td><span
+                                                        class="badge bg-gradient-success">Rp{{ number_format($item->total, 0, ',', '.') }}</span>
+                                                </td>
+                                                <td>{{ $item->catatan }}</td>
+                                            </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -89,7 +77,24 @@
                                         <b>Laporan Pengeluaran</b>
                                     </div>
                                     <div class="col-6 text-right">
-                                        <button class="btn btn-outline-primary btn-xs"><i class="bi bi-plus"></i> Tambah Pengeluaran</button>
+                                        <button class="btn btn-outline-primary btn-xs" data-toggle="modal"
+                                            data-target="#modal-pengeluaran"><i class="bi bi-plus"></i> Tambah
+                                            Pengeluaran</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {{-- Modal Pengeluaran --}}
+                            <div class="modal fade" id="modal-pengeluaran">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Catatan Pengeluaran</h4>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        @include('admin.laporan.pengeluaran')
                                     </div>
                                 </div>
                             </div>
@@ -101,20 +106,25 @@
                                             <th>No.</th>
                                             <th>Tanggal</th>
                                             <th>Catatan</th>
+                                            <th>Saldo</th>
                                             <th>Harga</th>
+                                            <th>Sisa Saldo</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach ($pengeluaran as $item)
                                         <tr>
-                                            <td>1</td>
-                                            <td>05-10-2023</td>
-                                            <td>beli apa</td>
-                                            <td>Rp10.000</td>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $item->tanggal }}</td>
+                                            <td>{{ $item->catatan }}</td>
+                                            <td><span class="badge bg-gradient-info">Rp{{ number_format($item->saldo, 0, ',', '.') }}</span></td>
+                                            <td>Rp{{ number_format($item->harga, 0, ',', '.') }}</td>
+                                            <td><span class="badge bg-gradient-success">Rp{{ number_format($item->sisa_saldo, 0, ',', '.') }}</span></td>
                                             <td><button class="btn bg-gradient-warning btn-xs"><i
                                                         class="bi bi-pencil-square"></i> Edit</button></td>
                                         </tr>
-                                        
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -125,7 +135,9 @@
                                 <tr>
                                     <td><b>Sisa Saldo</b></td>
                                     <td><b>:</b></td>
-                                    <td><span class="badge text-danger"><h5>Rp200.000</h5></span></td>
+                                    <td><span class="badge text-danger">
+                                            <h5>Rp200.000</h5>
+                                        </span></td>
                                 </tr>
                                 {{-- <div class="row justify-content-center">
 

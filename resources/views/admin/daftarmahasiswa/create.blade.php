@@ -7,7 +7,7 @@
         </div>
         <div class="form-group">
             <label for="nim">NIM</label>
-            <input type="number" name="nim" class="form-control" id="nim" placeholder="Nomor Induk Mahasiswa" value="{{ old('nim') }}"
+            <input type="number" name="nim" class="form-control @error('nim') is-invalid @enderror" id="nim" placeholder="Nomor Induk Mahasiswa" value="{{ old('nim') }}"
                 required>
         </div>
         <div class="form-group">

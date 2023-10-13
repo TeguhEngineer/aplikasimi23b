@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kas;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
@@ -14,7 +15,10 @@ class AdminController extends Controller
     }
 
     public function kas() {
-        return view('kas-user.index');
+        $data = Kas::join('users','kas.users_id', '=', 'users.id')->select('kas.*')->orderBy('users.nama', 'ASC');
+        return view('kas-user.index', [
+            'datamahasiswa'     => $data->get()
+        ]);
     }
 
     public function dashboard() {

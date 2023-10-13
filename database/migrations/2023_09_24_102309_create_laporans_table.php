@@ -15,7 +15,8 @@ class CreateLaporansTable extends Migration
     {
         Schema::create('laporans', function (Blueprint $table) {
             $table->id();
-            $table->date('bulan');
+            $table->string('bulan');
+            $table->integer('tahun');
             $table->integer('total');
             $table->text('catatan')->nullable();
             $table->timestamps();

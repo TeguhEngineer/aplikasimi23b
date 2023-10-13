@@ -33,5 +33,6 @@ Route::get('/dashboard', [AdminController::class, 'dashboard']);
 Route::resource('/daftarmahasiswa', DaftarMahasiswaController::class);
 Route::resource('/pembayarankas', PembayaranKasController::class);
 Route::resource('/laporan',LaporanController::class);
+Route::post('/laporan', [LaporanController::class, 'pengeluaran']);
 Route::resource('/informasi',InformasiController::class);
 

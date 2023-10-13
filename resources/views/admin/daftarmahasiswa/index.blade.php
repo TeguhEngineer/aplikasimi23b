@@ -25,9 +25,9 @@
                     <div class="col-12">
                         <div class="card">
 
+                            {{-- Alert Create dan Edit --}}
                             @if (session()->has('informasi'))
-
-                                <button type="button" id="alert" class="swalDefaultSuccess"></button>
+                                <button type="button" id="alert" style="display: none" class="swalDefaultSuccess"></button>
                                 <script>
                                     // Fungsi ini akan dipanggil saat halaman dimuat
                                     window.onload = function() {
@@ -41,10 +41,10 @@
                                     // {{ session('informasi') }}
                                 </script>
                             @endif
-
+                            
+                            {{-- Alert Delete --}}
                             @if (session()->has('delete'))
-
-                                <button type="button" id="alert" class="swalDefaultError"></button>
+                                <button type="button" id="alert" style="display: none" class="swalDefaultError"></button>
                                 <script>
                                     // Fungsi ini akan dipanggil saat halaman dimuat
                                     window.onload = function() {
@@ -158,6 +158,9 @@
 
 @section('js')
     @error('nim')
+        {{-- <div class="invalid-feedback">
+            {{ "Nim lebih dari 9" }}
+        </div> --}}
         <script>
             $('#create').modal('show')
         </script>

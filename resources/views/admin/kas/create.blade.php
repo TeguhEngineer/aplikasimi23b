@@ -1,64 +1,56 @@
-{{-- <form action="/daftarmahasiswa" method="POST"> --}}
-{{-- @csrf --}}
-<div class="modal-body">
-    <div class="form-group">
-        <label>Nama</label>
-        <select class="form-control select2" name="nama" data-placeholder="Select a State" style="width: 100%;">
-            <option>-- Pilih Nama Mahsiswa --</option>
-            @foreach ($namamahasiswa as $item)
-                <option value="{{ $item->id }}">{{ $item->nama }}
-                </option>
-            @endforeach
+<form action="/pembayarankas" method="POST">
+    @csrf
+    <div class="modal-body">
+        <div class="form-group">
+            <label>Nama</label>
+            <select class="form-control select2" name="users_id" style="width: 100%;" >
+                <option>-- Pilih Nama Mahsiswa --</option>
+                @foreach ($namamahasiswa as $item)
+                    <option value="{{ $item->id }}">{{ $item->nama }}
+                    </option>
+                @endforeach
 
-        </select>
-    </div>
-    <div class="row">
+            </select>
+        </div>
+        <div class="row">
 
+            <div class="col-12 my-2">
+                <div class="form-group">
+                    <label for="minggu1">Minggu 1</label>
+                    <select class="custom-select rounded-0" name="minggu1" id="minggu1">
+                        <option value="belum" selected>Belum</option>
+                        <option value="sudah">Sudah</option>
+                    </select>
+                </div>
 
-        <div class="col-12 my-2">
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">
-                        <input type="checkbox" name="minggu1">
-                    </span>
+                <div class="form-group">
+                    <label for="minggu2">Minggu 2</label>
+                    <select class="custom-select rounded-0" name="minggu2" id="minggu2">
+                        <option value="belum" selected>Belum</option>
+                        <option value="sudah">Sudah</option>
+                    </select>
                 </div>
-                <input type="text" class="form-control" placeholder="MINGGU 1" disabled>
-            </div>
-        </div>
-        <div class="col-12 my-2">
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">
-                        <input type="checkbox" name="minggu2">
-                    </span>
+
+                <div class="form-group">
+                    <label for="minggu3">Minggu 3</label>
+                    <select class="custom-select rounded-0" name="minggu3" id="minggu3">
+                        <option value="belum" selected>Belum</option>
+                        <option value="sudah">Sudah</option>
+                    </select>
                 </div>
-                <input type="text" class="form-control" placeholder="MINGGU 2" disabled>
-            </div>
-        </div>
-        <div class="col-12 my-2">
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">
-                        <input type="checkbox" name="minggu3">
-                    </span>
+
+                <div class="form-group">
+                    <label for="minggu4">Minggu 4</label>
+                    <select class="custom-select rounded-0" name="minggu4" id="minggu4">
+                        <option value="belum" selected>Belum</option>
+                        <option value="sudah">Sudah</option>
+                    </select>
                 </div>
-                <input type="text" class="form-control" placeholder="MINGGU 3" disabled>
-            </div>
-        </div>
-        <div class="col-12 my-2">
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">
-                        <input type="checkbox" name="minggu4">
-                    </span>
-                </div>
-                <input type="text" class="form-control" placeholder="MINGGU 4" disabled>
             </div>
         </div>
     </div>
-</div>
-<div class="modal-footer justify-content-between">
-    <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-    <button type="submit" class="btn btn-primary">Simpan</button>
-</div>
-{{-- </form> --}}
+    <div class="modal-footer justify-content-between">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+        <button type="submit" class="btn btn-primary">Simpan</button>
+    </div>
+</form>
