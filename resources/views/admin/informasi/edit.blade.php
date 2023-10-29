@@ -1,5 +1,6 @@
 <form action="/informasi" method="POST">
-    @csrf
+    {{-- @method('PUT') --}}
+    {{-- @csrf --}}
     <div class="modal-body">
         <div class="form-group">
             <label>Informasi</label>

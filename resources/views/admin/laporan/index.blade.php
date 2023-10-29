@@ -25,6 +25,42 @@
                     <div class="col-12 col-lg-6">
 
                         <div class="card">
+
+                            @if (session()->has('informasi'))
+                                <script>
+                                    // Fungsi ini akan dipanggil saat halaman dimuat
+                                    window.onload = function() {
+                                        // Mengambil referensi tombol
+                                        var button = document.getElementById('alert');
+
+                                        // Simulasikan klik pada tombol
+                                        button.click();
+                                        button.style.display = 'none';
+                                    };
+                                    // {{ session('informasi') }}
+                                </script>
+                                <button type="button" id="alert" style="display: none"
+                                    class="swalDefaultSuccess"></button>
+                            @endif
+
+                            {{-- Alert Delete --}}
+                            @if (session()->has('delete'))
+                                <script>
+                                    // Fungsi ini akan dipanggil saat halaman dimuat
+                                    window.onload = function() {
+                                        // Mengambil referensi tombol
+                                        var button = document.getElementById('alert');
+
+                                        // Simulasikan klik pada tombol
+                                        button.click();
+                                        button.style.display = 'none';
+                                    };
+                                    // {{ session('informasi') }}
+                                </script>
+                                <button type="button" id="alert" style="display: none"
+                                    class="swalDefaultError"></button>
+                            @endif
+
                             <div class="card-header">
                                 <div class="row">
                                     <div class="col-6">
@@ -99,6 +135,9 @@
                                 </div>
                             </div>
 
+                           
+                            
+
                             <div class="card-body table-responsive p-0" style="height: 264px;">
                                 <table class="table table-hover table-head-fixed text-nowrap">
                                     <thead>
@@ -114,16 +153,36 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($pengeluaran as $item)
-                                        <tr>
-                                            <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $item->tanggal }}</td>
-                                            <td>{{ $item->catatan }}</td>
-                                            <td><span class="badge bg-gradient-info">Rp{{ number_format($item->saldo, 0, ',', '.') }}</span></td>
-                                            <td>Rp{{ number_format($item->harga, 0, ',', '.') }}</td>
-                                            <td><span class="badge bg-gradient-success">Rp{{ number_format($item->sisa_saldo, 0, ',', '.') }}</span></td>
-                                            <td><button class="btn bg-gradient-warning btn-xs"><i
-                                                        class="bi bi-pencil-square"></i> Edit</button></td>
-                                        </tr>
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $item->tanggal }}</td>
+                                                <td>{{ $item->catatan }}</td>
+                                                <td><span
+                                                        class="badge bg-gradient-info">Rp{{ number_format($item->saldo, 0, ',', '.') }}</span>
+                                                </td>
+                                                <td>Rp{{ number_format($item->harga, 0, ',', '.') }}</td>
+                                                <td><span
+                                                        class="badge bg-gradient-success">Rp{{ number_format($item->sisa_saldo, 0, ',', '.') }}</span>
+                                                </td>
+                                                <td><button class="btn bg-gradient-warning btn-xs" data-toggle="modal"
+                                                        data-target="#modal-editpengeluaran{{ $item->id }}"><i class="bi bi-pencil-square"></i>
+                                                        Edit</button>
+
+                                                        <div class="modal fade" id="modal-editpengeluaran{{ $item->id }}">
+                                                            <div class="modal-dialog">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h4 class="modal-title">Catatan Pengeluaran</h4>
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    @include('admin.laporan.editpengeluaran')
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                </td>
+                                            </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
@@ -136,14 +195,9 @@
                                     <td><b>Sisa Saldo</b></td>
                                     <td><b>:</b></td>
                                     <td><span class="badge text-danger">
-                                            <h5>Rp200.000</h5>
+                                            {{-- <h5>{{ $sisasaldo->sisa_saldo }}</h5> --}}
                                         </span></td>
                                 </tr>
-                                {{-- <div class="row justify-content-center">
-
-                                    <div class="col-4"><h5>Sisa Saldo :</h5></div>
-                                    <div class="col-4"><span class="badge bg-success px-3"><h6>Rp200.000</h6></span></div>
-                                </div> --}}
                             </div>
                         </div>
 

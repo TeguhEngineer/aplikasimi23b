@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Laporan;
 use App\Models\Pengeluaran;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class LaporanController extends Controller
 {
@@ -17,9 +18,11 @@ class LaporanController extends Controller
     {
         $showLaporan = Laporan::all();
         $showPengeluaran = Pengeluaran::all();
+        // $sisa_saldo      = Pengeluaran::latest();
         return view('admin.laporan.index', [
             'laporan'       => $showLaporan,
             'pengeluaran'   => $showPengeluaran,
+            // 'sisasaldo'     => $sisa_saldo->get()
         ]);
     }
 
@@ -95,7 +98,16 @@ class LaporanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // Untuk Edit Pengeluaran
+        $validateData = $request->validate([
+            'tanggal'      => 'required',
+            'catatan'      => 'required',
+            'saldo'        => 'required',
+            'harga'        => 'required',
+            'sisa_saldo'   => 'required',
+        ]);
+        Pengeluaran::find($id)->update($validateData);
+        return back()->with('informasi','');
     }
 
     /**

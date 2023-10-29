@@ -11,7 +11,7 @@
 </head>
 <style>
     body {
-        /* height: 1000px; */
+        height: 1000px;
         background-image: url(img/kas-user/Background.jpg);
         background-repeat: no-repeat;
         background-size: cover;
@@ -49,9 +49,9 @@
                     </div>
                 </div>
                 <div class="modal-footer justify-content-center">
-                    <a href="" type="button"  data-bs-toggle="modal" data-bs-target="#informasi" ><small>info lainnya<i class="bi bi-chevron-double-right"></small></i></a>
-                    {{-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button> --}}
+                    <a href="" type="button" data-bs-toggle="modal" data-bs-target="#informasi"><small>info
+                            lainnya<i class="bi bi-chevron-double-right"></small></i></a>
+
                 </div>
             </div>
         </div>
@@ -175,6 +175,39 @@
                     </table>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <section id="collapse">
+        <div class="container" style="width: 80%">
+            <h1 class="text-center text-white">Website Khusus Kelas MI23B</h1>
+            <h4 class="text-center text-white mb-4">(informasi pembayaran uang kas)</h4>
+            <div class="row">
+                <div class="col-12">
+                    @foreach ($datamahasiswa as $item)
+                        
+                    
+                    <div class="data">
+                        <button class="btn btn-primary w-100 my-1" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapse1" aria-expanded="false" aria-controls="collapseExample">
+                            {{ $item->user->nama }}
+                        </button>
+                    </div>
+                    <div class="isi-data">
+                        
+                        <div class="collapse" id="collapse1">
+                            <div class="card card-body">
+                                Some placeholder content for the collapse component. This panel is hidden by default but
+                                revealed when the user activates the relevant trigger.
+                            </div>
+                        </div>
+                       
+                    </div>
+                    @endforeach
+
+                </div>
+            </div>
+
         </div>
     </section>
 

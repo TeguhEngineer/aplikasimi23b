@@ -191,7 +191,7 @@
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
-                                    @include('admin.laporan.create')
+                                    @include('admin.laporan.createlaporan')
                                 </div>
                             </div>
                         </div>

@@ -73,9 +73,9 @@ class DaftarMahasiswaController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.daftarmahasiswa.index', [
-            'datamahasiswami23b'     =>User::where('id',$id)->get()
-        ]);
+        // return view('admin.daftarmahasiswa.index', [
+        //     'datamahasiswami23b'     =>User::where('id',$id)->get()
+        // ]);
     }
 
     /**

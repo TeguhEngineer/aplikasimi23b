@@ -53,6 +53,17 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item" style="margin-top: 210px;">
+                    <form action="/logout" method="POST">
+                        @csrf
+                        <button class="form-control nav-link {{ Request::is('logout*') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-power-off"></i>
+                            <p>
+                                Logout
+                            </p>
+                        </button>
+                    </form>
+                </li>
             </ul>
         </nav>
 

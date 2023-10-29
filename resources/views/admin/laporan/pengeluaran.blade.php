@@ -1,4 +1,4 @@
-<form action="/laporan" method="POST">
+<form action="/laporanpost" method="POST">
     @csrf
     <div class="modal-body">
         <div class="form-group">

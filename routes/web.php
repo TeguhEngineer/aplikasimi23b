@@ -21,18 +21,19 @@ use Illuminate\Support\Facades\Route;
 
 // Login Authentikasi
 Route::get('/', [UserController::class, 'index']);
-Route::get('/kas', [AdminController::class, 'index']);
-Route::get('/admin', [AdminController::class, 'index']);
-Route::post('/admin', [AdminController::class, 'authenticate']);
+Route::get('/login', [AdminController::class, 'index'])->name('login')->middleware('guest');
+// Route::get('/admin', [AdminController::class, 'index'])->name('login')->middleware('guest');
+Route::post('/login', [AdminController::class, 'authenticate']);
 
 // User
-Route::get('/mi23b', [AdminController::class, 'kas']);
+Route::get('/mi23b', [AdminController::class, 'kas'])->middleware('auth');
 
 // Admin
-Route::get('/dashboard', [AdminController::class, 'dashboard']);
-Route::resource('/daftarmahasiswa', DaftarMahasiswaController::class);
-Route::resource('/pembayarankas', PembayaranKasController::class);
-Route::resource('/laporan',LaporanController::class);
-Route::post('/laporan', [LaporanController::class, 'pengeluaran']);
-Route::resource('/informasi',InformasiController::class);
+Route::post('/logout', [AdminController::class, 'logout']);
+Route::get('/dashboard', [AdminController::class, 'dashboard'])->middleware('auth');
+Route::resource('/daftarmahasiswa', DaftarMahasiswaController::class)->middleware('auth');
+Route::resource('/pembayarankas', PembayaranKasController::class)->middleware('auth');
+Route::resource('/laporan',LaporanController::class)->middleware('auth');
+Route::post('/laporanpost', [LaporanController::class, 'pengeluaran'])->middleware('auth');
+Route::resource('/informasi',InformasiController::class)->middleware('auth');
 

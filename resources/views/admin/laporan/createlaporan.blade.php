@@ -29,7 +29,7 @@
         </div>
         <div class="form-group">
             <label>Catatan</label>
-            <textarea class="form-control" name="catatan" rows="2" placeholder="Catatan untuk yang belum bayar kas"></textarea>
+            <textarea class="form-control" name="catatan" rows="2" placeholder="Catatan untuk yang belum bayar kas">tuntas</textarea>
         </div>
     </div>
     <div class="modal-footer justify-content-between">

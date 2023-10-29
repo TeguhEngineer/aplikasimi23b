@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Informasi;
 use Illuminate\Http\Request;
 
 class InformasiController extends Controller
@@ -13,7 +14,10 @@ class InformasiController extends Controller
      */
     public function index()
     {
-        return view('admin.informasi.index');
+        $data = Informasi::all();
+        return view('admin.informasi.index',[
+            'tampilkan'         => $data
+        ]);
     }
 
     /**
@@ -34,7 +38,12 @@ class InformasiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd(request()->all());
+        $validateData = $request->validate([
+            'informasi'         => 'required'
+        ]);
+        Informasi::create($validateData);
+        return redirect('/informasi')->with('informasi','');
     }
 
     /**
@@ -45,7 +54,7 @@ class InformasiController extends Controller
      */
     public function show($id)
     {
-        //
+       //
     }
 
     /**
@@ -68,7 +77,11 @@ class InformasiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validateData = $request->validate([
+            'informasi'   => 'required',
+        ]);
+        Informasi::find($id)->update($validateData);
+        return back()->with('informasi','');
     }
 
     /**
@@ -79,6 +92,7 @@ class InformasiController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Informasi::where('id',$id)->delete();
+        return back()->with('delete',''); 
     }
 }
