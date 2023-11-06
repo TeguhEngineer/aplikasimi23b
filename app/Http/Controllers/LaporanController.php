@@ -18,11 +18,21 @@ class LaporanController extends Controller
     {
         $showLaporan = Laporan::all();
         $showPengeluaran = Pengeluaran::all();
-        // $sisa_saldo      = Pengeluaran::latest();
+        $sisa_saldo      = Pengeluaran::latest()->first()->sisa_saldo;
         return view('admin.laporan.index', [
             'laporan'       => $showLaporan,
             'pengeluaran'   => $showPengeluaran,
-            // 'sisasaldo'     => $sisa_saldo->get()
+            'sisasaldo'     => $sisa_saldo
+        ]);
+    }
+
+    public function print()
+    {   
+        $pemasukan = Laporan::all();
+        $pengeluaran = Pengeluaran::all();
+        return view('admin.laporan.print',[
+            'pemasukan'     => $pemasukan,
+            'pengeluaran'   => $pengeluaran
         ]);
     }
 

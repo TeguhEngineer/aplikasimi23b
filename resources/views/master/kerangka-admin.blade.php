@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Starter</title>
+    <title>MI23B | Admin</title>
 
     <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
 
@@ -46,14 +46,14 @@
 
 
 
-
-        <aside class="control-sidebar control-sidebar-dark">
+        {{-- Menu Kanan --}}
+        {{-- <aside class="control-sidebar control-sidebar-dark">
 
             <div class="p-3">
                 <h5>Title</h5>
                 <p>Sidebar content</p>
             </div>
-        </aside>
+        </aside> --}}
 
 
         <footer class="main-footer">

@@ -11,7 +11,7 @@
 </head>
 <style>
     body {
-        height: 1000px;
+        /* height: 1000px; */
         background-image: url(img/kas-user/Background.jpg);
         background-repeat: no-repeat;
         background-size: cover;
@@ -24,7 +24,8 @@
         background-color: rgba(0, 0, 0, 0.5);
         padding: 20px;
         border-radius: 10px;
-        margin-top: 50px;
+        margin-top: 20px;
+        margin-bottom: 20px;
     }
 </style>
 
@@ -62,30 +63,14 @@
         <div class="modal-dialog ">
             <div class="modal-content">
                 <div class="modal-header bg-success-subtle">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Informasi <i class="bi bi-info-circle"></i></h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel"><i class="bi bi-info-circle"></i> Informasi
+                    </h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-12 px-5 py-0">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla, ipsam.
-
-                            <table class="table">
-                                <tbody>
-                                    <tr>
-                                        <td>Teguh</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Teguh</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Teguh</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Teguh</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        <div class="col-12 py-0">
+                            <textarea  cols="60" rows="8" style="border: none" disabled>{{ $informasi->informasi }}</textarea>
                         </div>
                     </div>
                 </div>
@@ -97,39 +82,44 @@
         </div>
     </div>
 
+    <!-- Modal Logout-->
+    <div class="modal fade" id="logout" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Logout</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Apakah kamu ingin keluar dari halaman ini ?
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <form action="/logout">
+                        <button type="submit" class="btn btn-primary btn-sm px-5">Ya</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <section id="tabel" class="tabel">
         <div class="container" style="width: 80%">
             <h1 class="text-center text-white">Website Khusus Kelas MI23B</h1>
             <h4 class="text-center text-white mb-4">(informasi pembayaran uang kas)</h4>
 
             <div class="row">
-                <div class="col-5">
-                    <table class="table table-bordered table-hover border-primary opacity-75">
-                        <thead class="table-success">
-                            <tr class="border-primary text-center">
-                                <th>Nama</th>
-                            </tr>
-                            <tr class="border-primary text-center">
-                                <th>Mahasiswa</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($datamahasiswa as $item)
-                                <tr>
-                                    <td class="text-primary">{{ $item->user->nama }}</td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-                <div class="col-7">
+
+                <div class="col-12">
                     <table class="table table-bordered table-hover border-primary opacity-75">
                         <thead class="table-success">
                             <tr class="border-primary">
+                                <th class="text-center">Nama</th>
                                 <th colspan="4" class="text-center">Minggu</th>
 
                             </tr>
                             <tr class="border-primary">
+                                <th class="text-center">Mahasiswa</th>
                                 <th class="text-center">1</th>
                                 <th class="text-center">2</th>
                                 <th class="text-center">3</th>
@@ -140,29 +130,30 @@
                         </thead>
                         <tbody>
                             @foreach ($datamahasiswa as $item)
-                                <tr class="text-center">
-                                    <td>
+                                <tr>
+                                    <td class="text-primary text-left">{{ $item->user->nama }}</td>
+                                    <td class="text-center">
                                         @if ($item->minggu1 == 'sudah')
                                             <i class="bi bi-check-square text-success"></i>
                                         @elseif ($item->minggu1 == 'belum')
                                             <i class="bi bi-x-square text-danger"></i>
                                         @endif
                                     </td>
-                                    <td>
+                                    <td class="text-center">
                                         @if ($item->minggu2 == 'sudah')
                                             <i class="bi bi-check-square text-success"></i>
                                         @elseif ($item->minggu2 == 'belum')
                                             <i class="bi bi-x-square text-danger"></i>
                                         @endif
                                     </td>
-                                    <td>
+                                    <td class="text-center">
                                         @if ($item->minggu3 == 'sudah')
                                             <i class="bi bi-check-square text-success"></i>
                                         @elseif ($item->minggu3 == 'belum')
                                             <i class="bi bi-x-square text-danger"></i>
                                         @endif
                                     </td>
-                                    <td>
+                                    <td class="text-center">
                                         @if ($item->minggu4 == 'sudah')
                                             <i class="bi bi-check-square text-success"></i>
                                         @elseif ($item->minggu4 == 'belum')
@@ -173,41 +164,10 @@
                             @endforeach
                         </tbody>
                     </table>
+                    <button type="button" class="btn btn-primary text-center form-control" data-bs-toggle="modal"
+                        data-bs-target="#logout" style="opacity: 60%;"><b>Logout</b></button>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <section id="collapse">
-        <div class="container" style="width: 80%">
-            <h1 class="text-center text-white">Website Khusus Kelas MI23B</h1>
-            <h4 class="text-center text-white mb-4">(informasi pembayaran uang kas)</h4>
-            <div class="row">
-                <div class="col-12">
-                    @foreach ($datamahasiswa as $item)
-                        
-                    
-                    <div class="data">
-                        <button class="btn btn-primary w-100 my-1" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapse1" aria-expanded="false" aria-controls="collapseExample">
-                            {{ $item->user->nama }}
-                        </button>
-                    </div>
-                    <div class="isi-data">
-                        
-                        <div class="collapse" id="collapse1">
-                            <div class="card card-body">
-                                Some placeholder content for the collapse component. This panel is hidden by default but
-                                revealed when the user activates the relevant trigger.
-                            </div>
-                        </div>
-                       
-                    </div>
-                    @endforeach
-
-                </div>
-            </div>
-
         </div>
     </section>
 

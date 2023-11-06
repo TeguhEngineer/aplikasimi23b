@@ -6,12 +6,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Uang Kas</h1>
+                        <h1 class="m-0">Pembayaran Kas</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Starter Page</li>
+                            <li class="breadcrumb-item active">Pembayaran Kas</li>
                         </ol>
                     </div>
                 </div>
@@ -63,17 +63,13 @@
 
                             <div class="card-header">
                                 <div class="row">
-                                    <div class="col-4">
+                                    <div class="col-4 text-left">
 
                                         <button class="btn btn-outline-primary btn-xs" data-toggle="modal"
                                             data-target="#modal-create"><i class="bi bi-plus-circle"></i>
                                             Tambah Data Pembayaran</button>
                                     </div>
-                                    <div class="col-4 text-center">
-                                        <p class="d-inline h5"><i class="bi bi-calendar3"></i>
-                                            <b><u><?php echo date('j/m/Y'); ?></u></b>
-                                        </p>
-                                    </div>
+                                    <div class="col-4"></div>
                                     <div class="col-4 text-right">
                                         <button type="button" class="btn btn-outline-success btn-xs" data-toggle="modal"
                                         data-target="#modal-laporan"><i
@@ -82,7 +78,7 @@
                                 </div>
                             </div>
 
-                            <div class="card-body table-responsive p-0" style="height: 342px;">
+                            <div class="card-body table-responsive p-0" style="height: 295px;">
                                 <table class="table table-head-fixed text-nowrap">
                                     <thead>
                                         <tr>

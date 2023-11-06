@@ -6,12 +6,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Laporan Bulanan</h1>
+                        <h1 class="m-0">Laporan Kas</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Starter Page</li>
+                            <li class="breadcrumb-item active">Laporan Kas</li>
                         </ol>
                     </div>
                 </div>
@@ -22,7 +22,7 @@
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-12 col-lg-6">
+                    <div class="col-sm-12 col-lg-6">
 
                         <div class="card">
 
@@ -67,14 +67,16 @@
                                         <b>Laporan Pemasukan Kas</b>
                                     </div>
                                     <div class="col-6 text-right">
-                                        <button class="btn btn-outline-danger btn-xs px-3"><i class="bi bi-printer"></i>
-                                            Print</button>
+                                        <form action="/print">
+                                            <button class="btn btn-outline-danger btn-xs px-3"><i class="bi bi-printer"></i>
+                                                Print</button>
+                                        </form>
 
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="card-body p-0">
+                            <div class="card-body table-responsive p-0">
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
@@ -104,7 +106,7 @@
                         </div>
                     </div>
 
-                    <div class="col-12 col-lg-6">
+                    <div class="col-sm-12 col-lg-6">
 
                         <div class="card">
                             <div class="card-header">
@@ -135,8 +137,8 @@
                                 </div>
                             </div>
 
-                           
-                            
+
+
 
                             <div class="card-body table-responsive p-0" style="height: 264px;">
                                 <table class="table table-hover table-head-fixed text-nowrap">
@@ -144,8 +146,8 @@
                                         <tr>
                                             <th>No.</th>
                                             <th>Tanggal</th>
-                                            <th>Catatan</th>
                                             <th>Saldo</th>
+                                            <th>Catatan</th>
                                             <th>Harga</th>
                                             <th>Sisa Saldo</th>
                                             <th>Aksi</th>
@@ -156,31 +158,35 @@
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $item->tanggal }}</td>
-                                                <td>{{ $item->catatan }}</td>
                                                 <td><span
                                                         class="badge bg-gradient-info">Rp{{ number_format($item->saldo, 0, ',', '.') }}</span>
                                                 </td>
-                                                <td>Rp{{ number_format($item->harga, 0, ',', '.') }}</td>
+                                                <td>{{ $item->catatan }}</td>
+                                                <td><span class="badge bg-gradient-danger">
+                                                        Rp{{ number_format($item->harga, 0, ',', '.') }} </span>
+                                                </td>
                                                 <td><span
                                                         class="badge bg-gradient-success">Rp{{ number_format($item->sisa_saldo, 0, ',', '.') }}</span>
                                                 </td>
                                                 <td><button class="btn bg-gradient-warning btn-xs" data-toggle="modal"
-                                                        data-target="#modal-editpengeluaran{{ $item->id }}"><i class="bi bi-pencil-square"></i>
+                                                        data-target="#modal-editpengeluaran{{ $item->id }}"><i
+                                                            class="bi bi-pencil-square"></i>
                                                         Edit</button>
 
-                                                        <div class="modal fade" id="modal-editpengeluaran{{ $item->id }}">
-                                                            <div class="modal-dialog">
-                                                                <div class="modal-content">
-                                                                    <div class="modal-header">
-                                                                        <h4 class="modal-title">Catatan Pengeluaran</h4>
-                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                            <span aria-hidden="true">&times;</span>
-                                                                        </button>
-                                                                    </div>
-                                                                    @include('admin.laporan.editpengeluaran')
+                                                    <div class="modal fade" id="modal-editpengeluaran{{ $item->id }}">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h4 class="modal-title">Catatan Pengeluaran</h4>
+                                                                    <button type="button" class="close"
+                                                                        data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
                                                                 </div>
+                                                                @include('admin.laporan.editpengeluaran')
                                                             </div>
                                                         </div>
+                                                    </div>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -195,7 +201,7 @@
                                     <td><b>Sisa Saldo</b></td>
                                     <td><b>:</b></td>
                                     <td><span class="badge text-danger">
-                                            {{-- <h5>{{ $sisasaldo->sisa_saldo }}</h5> --}}
+                                            <h5>Rp{{ number_format($sisasaldo, 0, ',', '.') }}</h5>
                                         </span></td>
                                 </tr>
                             </div>

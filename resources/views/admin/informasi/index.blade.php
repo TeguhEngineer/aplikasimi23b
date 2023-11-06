@@ -11,7 +11,7 @@
                     <div class="col-sm-12">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Starter Page</li>
+                            <li class="breadcrumb-item active">Informasi</li>
                         </ol>
                     </div>
                 </div>
@@ -88,7 +88,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
-                            <div class="card-header text-center">
+                            <div class="card-header h4 text-center">
                                 <b>Informasi</b>
                             </div>
                             <div class="card-body">
@@ -96,7 +96,7 @@
                                     <h5 style="text-align: center; color:rgb(241, 44, 44);">Tidak ada informasi!</h5>
                                 @else
                                     @foreach ($tampilkan as $item)
-                                        <textarea rows="8" cols="130" style="border: none; resize:none; overflow:hidden">{{ $item->informasi }}</textarea>
+                                        <textarea rows="8" cols="130" style="border: none; resize:none; overflow:hidden" disabled>{{ $item->informasi }}</textarea>
                                     @endforeach
                                 @endif
                             </div>
@@ -108,7 +108,12 @@
                                 @else
                                     <button class="btn btn-warning btn-sm" data-toggle="modal"
                                         data-target="#modal-edit-informasi">Ubah Informasi</button>
-                                    <button class="btn btn-danger btn-sm">Hapus Informasi</button>
+
+                                    {{-- <form action="/informasi/{{ $tampilkan[0]->id }}" class="d-inline" method="POST">
+                                        @method('delete')
+                                        @csrf
+                                        <button class="btn btn-danger btn-sm">Hapus Informasi</button>
+                                    </form> --}}
                                 @endif
                             </div>
                         </div>

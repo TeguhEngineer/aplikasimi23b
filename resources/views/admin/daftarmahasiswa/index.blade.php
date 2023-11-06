@@ -11,7 +11,7 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Starter Page</li>
+                            <li class="breadcrumb-item active">Daftar Mahasiswa</li>
                         </ol>
                     </div>
                 </div>
@@ -83,12 +83,12 @@
                             </div>
 
 
-                            <div class="card-body table-responsive p-0" style="height: 338px;">
+                            <div class="card-body table-responsive p-0" style="height: 290px;">
                                 <table class="table table-head-fixed text-nowrap">
                                     <thead>
                                         <tr>
                                             <th>No.</th>
-                                            <th>Foto</th>
+                                          
                                             <th>Nama</th>
                                             <th>NIM</th>
                                             <th>Jabatan</th>
@@ -100,7 +100,7 @@
                                         @foreach ($datamahasiswa as $item)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td><img src="" width="50" height="50" alt=""></td>
+                                             
                                                 <td>{{ $item->nama }}</td>
                                                 <td>{{ $item->nim }}</td>
                                                 <td><span class="text-danger">{{ $item->jabatan }}</span></td>

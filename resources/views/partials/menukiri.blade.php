@@ -3,10 +3,10 @@
 
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="adminlte/img/AdminLTELogo.png" class="img-circle elevation-2" alt="User Image">
+                <img src="adminlte/img/AdminLTELogo.png" class="img-circle elevation-3" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block text-bold">Admin Kelas MI23B</a>
+                <a href="#" class="d-block text-bold">{{ Auth()->user()->nama }}</a>
             </div>
         </div>
 
@@ -52,17 +52,6 @@
                             Informasi
                         </p>
                     </a>
-                </li>
-                <li class="nav-item" style="margin-top: 210px;">
-                    <form action="/logout" method="POST">
-                        @csrf
-                        <button class="form-control nav-link {{ Request::is('logout*') ? 'active' : '' }}">
-                            <i class="nav-icon fas fa-power-off"></i>
-                            <p>
-                                Logout
-                            </p>
-                        </button>
-                    </form>
                 </li>
             </ul>
         </nav>

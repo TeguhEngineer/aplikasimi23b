@@ -54,7 +54,7 @@ class InformasiController extends Controller
      */
     public function show($id)
     {
-       //
+        //
     }
 
     /**
@@ -92,7 +92,7 @@ class InformasiController extends Controller
      */
     public function destroy($id)
     {
-        Informasi::where('id',$id)->delete();
-        return back()->with('delete',''); 
+        // Informasi::where('id',$id)->delete();
+        // return back()->with('delete',''); 
     }
 }

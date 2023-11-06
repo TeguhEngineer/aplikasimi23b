@@ -1,6 +1,6 @@
-<form action="/informasi" method="POST">
-    {{-- @method('PUT') --}}
-    {{-- @csrf --}}
+<form action="/informasi/{{ $tampilkan[0]->id }}" method="POST">
+    @method('PUT')
+    @csrf
     <div class="modal-body">
         <div class="form-group">
             <label>Informasi</label>

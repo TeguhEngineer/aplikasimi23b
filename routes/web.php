@@ -6,6 +6,7 @@ use App\Http\Controllers\InformasiController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\PembayaranKasController;
 use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,19 +22,28 @@ use Illuminate\Support\Facades\Route;
 
 // Login Authentikasi
 Route::get('/', [UserController::class, 'index']);
-Route::get('/login', [AdminController::class, 'index'])->name('login')->middleware('guest');
+Route::get('/login', [AdminController::class, 'index'])->name('login');
 // Route::get('/admin', [AdminController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [AdminController::class, 'authenticate']);
 
 // User
-Route::get('/mi23b', [AdminController::class, 'kas'])->middleware('auth');
+Route::get('/mi23b', [AdminController::class, 'kas'])->middleware('auth')->middleware('can:user');
 
 // Admin
-Route::post('/logout', [AdminController::class, 'logout']);
-Route::get('/dashboard', [AdminController::class, 'dashboard'])->middleware('auth');
-Route::resource('/daftarmahasiswa', DaftarMahasiswaController::class)->middleware('auth');
-Route::resource('/pembayarankas', PembayaranKasController::class)->middleware('auth');
-Route::resource('/laporan',LaporanController::class)->middleware('auth');
-Route::post('/laporanpost', [LaporanController::class, 'pengeluaran'])->middleware('auth');
-Route::resource('/informasi',InformasiController::class)->middleware('auth');
+Route::middleware('auth','can:admin')->group(function(){
+
+    Route::post('/logout', [AdminController::class, 'logout']);
+    Route::get('/dashboard', [AdminController::class, 'dashboard']);
+    Route::resource('/daftarmahasiswa', DaftarMahasiswaController::class);
+    Route::resource('/pembayarankas', PembayaranKasController::class);
+    Route::resource('/laporan',LaporanController::class);
+    Route::get('/print', [LaporanController::class, 'print']);
+    Route::post('/laporanpost', [LaporanController::class, 'pengeluaran']);
+    Route::resource('/informasi',InformasiController::class);
+});
+
+Route::get('/logout', function(){
+    Auth::logout();
+    return redirect('/login');
+});
 
